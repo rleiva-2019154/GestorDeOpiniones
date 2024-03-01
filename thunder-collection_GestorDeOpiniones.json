@@ -1,0 +1,204 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "GestorDeOpiniones",
+    "dateExported": "2024-03-01T17:53:03.084Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "8f7784c0-cb65-4b10-a44a-64076185619a",
+            "colId": "0dc7223b-e3af-4fed-bae9-0c42b881497f",
+            "containerId": "",
+            "name": "Test",
+            "url": "Test",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2024-03-01T13:44:54.712Z",
+            "modified": "2024-03-01T13:48:17.490Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWUxZGM4MDM3ZmVhZDlmOTkyMmJmODIiLCJ1c2VybmFtZSI6ImFkbWluIiwibmFtZSI6ImFkbWluIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzA5MzAwODgyLCJleHAiOjE3MDkzMTE2ODJ9.ymXuTGuIj8-pi-cLAC8rgCI5aUnAaWJWTXX7BxyrpeA"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "b9192a65-3e1a-4f6c-8a76-2177bab3b1ea",
+            "colId": "0dc7223b-e3af-4fed-bae9-0c42b881497f",
+            "containerId": "",
+            "name": "Login",
+            "url": "login",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2024-03-01T13:45:18.350Z",
+            "modified": "2024-03-01T14:18:34.827Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formencoded",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "email",
+                        "value": "admin@gmail.com"
+                    },
+                    {
+                        "name": "password",
+                        "value": "useAdmin"
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "20afbe45-01b6-455d-9dcd-605e419d1877",
+            "colId": "0dc7223b-e3af-4fed-bae9-0c42b881497f",
+            "containerId": "",
+            "name": "Register",
+            "url": "register",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2024-03-01T13:50:29.366Z",
+            "modified": "2024-03-01T13:52:24.935Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formencoded",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "name",
+                        "value": "Rudgar"
+                    },
+                    {
+                        "name": "surname",
+                        "value": "Leiva"
+                    },
+                    {
+                        "name": "username",
+                        "value": "rleiva"
+                    },
+                    {
+                        "name": "password",
+                        "value": "12345678"
+                    },
+                    {
+                        "name": "email",
+                        "value": "rleiva@gmail.com"
+                    },
+                    {
+                        "name": "phone",
+                        "value": "12345678"
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "0ac7e820-c886-49cd-bdc8-a7216e5d9c73",
+            "colId": "0dc7223b-e3af-4fed-bae9-0c42b881497f",
+            "containerId": "",
+            "name": "UpdateUser",
+            "url": "update/65e1dd9837fead9f9922bf86",
+            "method": "PUT",
+            "sortNum": 50000,
+            "created": "2024-03-01T14:12:39.267Z",
+            "modified": "2024-03-01T14:20:18.332Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWUxZGQ5ODM3ZmVhZDlmOTkyMmJmODYiLCJ1c2VybmFtZSI6InJsZWl2YSIsIm5hbWUiOiJSdWRnYXIiLCJyb2xlIjoiQ0xJRU5UIiwiaWF0IjoxNzA5MzAyNzE5LCJleHAiOjE3MDkzMTM1MTl9.T8uChKH7Z71rCfGoT9AvpitzSDzUneJ-5Rq02TX7URQ"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "formencoded",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "password",
+                        "value": "Rleiva01"
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "8a4178bd-698b-4e80-a431-5bdcd07e25c7",
+            "colId": "0dc7223b-e3af-4fed-bae9-0c42b881497f",
+            "containerId": "",
+            "name": "LoginUser",
+            "url": "login",
+            "method": "POST",
+            "sortNum": 60000,
+            "created": "2024-03-01T14:16:55.978Z",
+            "modified": "2024-03-01T17:00:34.400Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formencoded",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "username",
+                        "value": "rleiva"
+                    },
+                    {
+                        "name": "password",
+                        "value": "35653118"
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "776e75ad-0a8a-4e32-ba37-fc66a9e2d43d",
+            "colId": "0dc7223b-e3af-4fed-bae9-0c42b881497f",
+            "containerId": "",
+            "name": "updatedPassword",
+            "url": "updatePassword/65e2054a30c99826b412199a",
+            "method": "PUT",
+            "sortNum": 70000,
+            "created": "2024-03-01T14:58:10.846Z",
+            "modified": "2024-03-01T16:42:07.502Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formencoded",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "oldPassword",
+                        "value": "12345678"
+                    },
+                    {
+                        "name": "newPassword",
+                        "value": "35653118"
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "bc91192a-eac7-4ceb-a832-2f3c8550bb69",
+            "colId": "0dc7223b-e3af-4fed-bae9-0c42b881497f",
+            "containerId": "",
+            "name": "TestPublication",
+            "url": "testPublication",
+            "method": "GET",
+            "sortNum": 80000,
+            "created": "2024-03-01T17:42:15.464Z",
+            "modified": "2024-03-01T17:42:33.264Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ],
+    "settings": {
+        "options": {
+            "baseUrl": "localhost:2656/"
+        }
+    }
+}

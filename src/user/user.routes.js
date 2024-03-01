@@ -1,6 +1,6 @@
 import express from 'express'
 import { isAdmin, validateJwt } from '../middlewares/validate-jwt.js'
-import {test, register, login, update, deleteU} from './user.controller.js'
+import {test, register, login, update, updatePassword } from './user.controller.js'
 
 const api = express.Router()
 
@@ -12,6 +12,6 @@ api.post('/login', login)
                         //Middleware
 api.get('/test', [validateJwt, isAdmin], test)
 api.put('/update/:id', [validateJwt], update) //Middleware -> funciones intermedias que sirven para validar
-api.delete('/delete/:id', [validateJwt], deleteU)
+api.put('/updatePassword/:id', updatePassword)
 
 export default api

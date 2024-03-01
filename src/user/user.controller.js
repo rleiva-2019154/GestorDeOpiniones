@@ -12,11 +12,37 @@ export const test =(req, res)=>{
     return res.send({message: 'Test is running'})
 }
 
+export const adminDef = async(req,res) =>{
+    try{
+        const adminExists = await User.findOne({username: 'admin'})
+        if(adminExists){
+            console.log('Ya existe el usuario principal')
+        }else{
+            const encryptPassword =  await encrypt('useAdmin')
+            const nuevoUsuario = new User({
+                name: 'admin',
+                surname: 'admin',
+                username: 'admin',
+                password: encryptPassword,
+                email: 'admin@gmail.com',
+                phone: '21548798',
+                role: 'ADMIN'
+            })
+            await nuevoUsuario.save()
+        }
+    }catch(err){
+        console.error(err)
+    }
+}
+
 export const register = async(req, res) => {
     try{
         //Capturar el formulario (body)
         let data = req.body
-        console.log(data)
+        const existingUser = await User.findOne({ username: data.username });
+        if (existingUser) {
+            return res.status(400).send({message: `An user with the same username already exists.`});
+        }
         //Encriptar la constraseña 
         data.password = await encrypt(data.password)
         //Asignar el rol por defecto 
@@ -25,7 +51,7 @@ export const register = async(req, res) => {
         let user = new User(data)
         await user.save()
         //Responder al usuario  
-        return res.send({message: `Register successfully, can be logged with email use ${user.username}`})
+        return res.send({message: `Register successfully, can be logged with email use ${user.email}`})
     }catch(err){    
         console.log(err)
         return res.status(500).send({message: 'Error registering user', err: err})
@@ -35,13 +61,21 @@ export const register = async(req, res) => {
 export const login = async(req, res)=>{
     try{
         //Capturar los datos (body)
-        let { username, password } = req.body
+        let { username, email, password } = req.body
         //Validar que el usuario exista
-        let user = await User.findOne({username}) //buscar un solo registro. username: 'jmolina'
+        let user;
+        if (username) {
+            user = await User.findOne({ username });
+        } else if (email) {
+            user = await User.findOne({ email });
+        } else {
+            return res.status(400).send({ message: 'Username or email is required' });
+        }
         //Verificar que la contraseña coincida
         if(user && await checkPassword(password, user.password)){
             let loggedUser = {
                 uid: user._id,
+                //email: user.email,
                 username: user.username,
                 name: user.name,
                 role: user.role
@@ -90,19 +124,38 @@ export const update = async(req, res)=>{ //Datos generales (No password)
     }
 }
 
-export const deleteU = async(req, res)=>{
+export const updatePassword = async (req, res) => {
     try {
-        //Obtener el Id
-        let { id } = req.params
-        //Validar si esta logeado y es el mismo X No lo vemos hoy X
-        //Eliminar (deleteOne (solo elimina no devuelve el documento)/ findOneAndDelete (Me devuelve el documento eliminado))
-        let deletedUser = await User.findOneAndDelete({_id: id})
-        //Verificar que se elimino
-        if(!deletedUser) return res.status(400).send({message: 'Account not found and not deleted'})
-        //Reponder
-        return res.send({message: `Account with username ${deletedUser.username} deleted successfully`}) //Status 200
-    } catch (err) {
-        console.error(err)
-        return res.status(500).send({message: 'Error deleting account'}) 
+        const { id } = req.params;
+ 
+        const { oldPassword, newPassword } = req.body;
+        // Verificar si se proporciona la contraseña antigua y la nueva contraseña
+        if (!oldPassword || !newPassword) {
+            return res.status(400).json({ message: 'Se requieren la contraseña antigua y la nueva contraseña' });
+        }
+ 
+        // Buscar al usuario por ID y contraseña antigua
+        const user = await User.findOne({ _id: id});
+ 
+        if (!user) {
+            return res.status(401).json({ message: 'La contraseña antigua es incorrecta o el usuario no fue encontrado' });
+        }
+ 
+        // Verificar que la nueva contraseña cumpla con los requisitos mínimos
+        if (newPassword.length < 8) {
+            return res.status(400).json({ message: 'La nueva contraseña debe tener al menos 8 caracteres' });
+        }
+        let nuevacontra = await encrypt(newPassword)
+        // Actualizar la contraseña del usuario
+        const updatedUser = await User.findByIdAndUpdate(id, { password: nuevacontra }, { new: true });
+ 
+        if (!updatedUser) {
+            return res.status(500).json({ message: 'Error al actualizar la contraseña del usuario' });
+        }
+ 
+        return res.json({ message: 'Contraseña actualizada exitosamente' });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: 'Error interno del servidor' });
     }
-}
+};
