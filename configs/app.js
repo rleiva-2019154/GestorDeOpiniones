@@ -10,6 +10,7 @@ import cors from 'cors'
 import { config } from "dotenv" 
 import userRoutes from '../src/user/user.routes.js'
 import publicationRoutes from '../src/publication/publication.routes.js'
+import commentRoutes from '../src/comment/comment.routes.js'
 
 //Configuraciones
 const app = express()
@@ -26,6 +27,7 @@ app.use(morgan('dev')) //Logs de solicitudes al servidor HTTP
 //Declaración de rutas
 app.use(userRoutes)
 app.use(publicationRoutes)
+app.use(commentRoutes)
 
 //Levantar el servidor
 export const initServer = () => {

@@ -1,16 +1,13 @@
 import { Schema, model } from "mongoose"
 
-const publicationSchema = Schema({
-    title: {
+const commentSchema = Schema({
+    text: {
         type: String,
         required: true
     },
-    category: {
-        type: String,
-        required: true
-    },
-    mainText: {
-        type: String,
+    publication: {
+        type: Schema.ObjectId,
+        ref: "publication",
         required: true
     },
     user: {
@@ -20,4 +17,4 @@ const publicationSchema = Schema({
     }
 })
 
-export default model('publication', publicationSchema)
+export default model('comment', commentSchema)
